@@ -1,9 +1,13 @@
-var app = require('express')();
+//var app = require('express')();
+const express = require('express');
+const app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-app.get('/', function(req, res){
-  res.sendFile(__dirname + '/index.html');
+app.use(express.static('mini-site-2'))
+
+app.get('/chat', function(req, res){
+  res.sendFile(__dirname + '/chat.html');
 });
 
 io.on('connection', function(socket){
@@ -17,9 +21,9 @@ io.on('connection', function(socket){
     io.emit('chat message', msg);
   });
 
-  socket.on('ui command', function(msg){
-    //console.log('message: ' + msg);
-    io.emit('ui command', msg);
+  socket.on('ui command', function(cmd){
+    //console.log('ui command: ' + cmd);
+    io.emit('ui command', cmd);
   });
 });
 

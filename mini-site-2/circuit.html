@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html class="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Circuit</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/style.css">
+        <!--import jquery-->
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <!-- isotope import-->
+        <script src="js/isotope/isotope.pkgd.min.js"></script>
+        <script src="js/sejour.js"></script>
+		<script src="js/logs.js"></script>
+    <script src="js/uicommand.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="header-container">
+            <div  class="header clearfix">
+                <h1 class="title">Voyage au Maroc</h1>
+                <div class="nav">
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="hotel.html" >Hôtel</a></li>
+                        <li><a href="circuit.html" class="is-active">Circuit</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="main">
+            <div class="retour"  style="display:none;">
+                <button class="retour button" onclick='javascript:location.reload();'>Retour</button>
+            </div>
+            <div class="contenu">
+                <div id="filtre">
+                    <div id="options">
+                        <h3> Affiner les résultats</h3>
+                        <h4>Villes</h4>
+                        <div class="option-set" data-group="ville">
+                            <input type="checkbox" value="" id="ville-all" class="all" checked /><label for="ville-all">Tout</label><br/>
+                            <input type="checkbox" value=".agadir" id="agadir" /><label for="agadir">Agadir</label><br/>
+                            <input type="checkbox" value=".essaouira" id="essaouira" /><label for="essaouira">Essaouira</label><br/>
+                            <input type="checkbox" value=".fes" id="fes" /><label for="fes">Fès</label><br/>
+                            <input type="checkbox" value=".marrakech" id="marrakech" /><label for="marrakech">Marrakech</label>
+                        </div>
+                        <h4>Hebergement</h4>
+                        <div class="option-set" data-group="hebergement">
+                            <input type="checkbox" value="" id="hebergement-all" class="all" checked /><label for="hebergement-all">Tout</label><br/>
+                            <input type="checkbox" value=".hotel" id="hotel" /><label for="hotel">Hôtel</label><br/>
+                            <input type="checkbox" value=".gite" id="gite" /><label for="gite">gite</label><br/>
+                            <input type="checkbox" value=".campement" id="campement" /><label for="campement">campement</label><br/>
+                            <input type="checkbox" value=".bivouac" id="bivouac" /><label for="bivouac">bivouac</label>
+                        </div>
+                        <h4>Thème</h4>
+                        <div class="option-set" data-group="theme">
+                            <input type="checkbox" value="" id="theme-all" class="all" checked /><label for="theme-all">Tout</label><br/>
+                            <input type="checkbox" value=".culturel" id="culturel" /><label for="culturel">culturel</label><br/>
+                            <input type="checkbox" value=".aventure" id="aventure" /><label for="aventure">aventure</label><br/>
+                            <input type="checkbox" value=".randonnée" id="randonnée" /><label for="randonnée">randonnée</label><br/>
+                        </div>
+                        <h4>Formule</h4>
+                        <div class="option-set" data-group="formule">
+                            <input type="checkbox" value="" id="formule-all" class="all" checked /><label for="formule-all">Tout</label><br/>
+                            <input type="checkbox" value=".demi" id="demi" /><label for="demi">Demi-pension</label><br/>
+                            <input type="checkbox" value=".complete" id="complete" /><label for="compete">Pension complète</label><br/>
+                        </div>
+                        <h4>Transport</h4>
+                        <div class="option-set" data-group="transport">
+                            <input type="checkbox" value="" id="transport-all" class="all" checked /><label for="transport-all">Tout</label><br/>
+                            <input type="checkbox" value=".minibus" id="minibus" /><label for="minibus">minibus</label><br/>
+                            <input type="checkbox" value=".4x4" id="4x4" /><label for="4x4">4x4</label>
+                        </div>
+                    </div>
+                    <div class="recherche">
+                        <form id="sorts" class="group">
+                            <SELECT name="nom" size="1" >
+                                <OPTION class="sort" data-sort-by="original-order"> Trier par </OPTION>
+                                <OPTION class="sort" data-sort-by="name">Ordre alphabétique</OPTION>
+                                <OPTION class="sort is-checked" data-sort-by="prixcroissant">Prix croissant</OPTION>
+                                <OPTION class="sort " data-sort-by="prixdecroissant">Prix décroissant</OPTION>
+                                <OPTION class="sort" data-sort-by="number">Avis de client</OPTION>
+                            </SELECT>
+                        </form>
+                        <div class="compare">
+                            <button class="button-compare button" ><label>Comparateur</label></button>
+							<button class="button-compare button" id="reinitFiltre" title="Annuler le filtre (Affiner les résultats)"><label>Voir tout</label></button>
+							<div class="compare_txt"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="isotope">
+                    <div class="element-item randonnée hotel gîte campement minibus marrakech essaouira complete " data-category="transition">
+                        <div class="colLeft">
+                            <h3 class="name"><a href="circuit/rivages.html">Circuit les rivages d'Essaouira</a></h3>
+                            <div class="image-item">
+                                <a href="circuit/rivages.html">
+                                    <img src="img/rivages/photo_liste.jpg" alt="Circuit les rivages d'essaouira">
+                                </a>
+                            </div>
+                            <div class="description">
+                                <p>Une caravane de chameaux, une côte désertique caressée par les vagues de l’océan. Et vous…</p>
+                            </div>
+                            <div class="ajouter" style="display: none;">
+                                <ul>
+                                    <li> Hôtel <span></span></li>
+                                    <li class="gris"> Campement <span></span></li>
+                                    <li > Gîte <span></span></li>
+                                    <li class="gris"> Culturel </li>
+                                    <li> Aventure </li>
+                                    <li class="gris">Randonnée<span></span></li>
+                                    <li> Minibus <span></span></li>
+                                    <li class="gris"> 4x4</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <input value="3800" type="checkbox" alt="" class="compare" id="sej1">
+                        <label for="sej1">Ajouter au comparateur</label>
+                        <div class="colRight">
+                            <div class="prix-block">
+                                <p class="prix"><small>À partir de</small><br/>699€/pers</p>
+                            </div>
+                            <div class="avis-block">
+                                avis : <span class="avis"> 4/5</span><img src="img/etoile4.gif"/>
+                            </div>
+                            <div class="button-continuer">
+                                <a class="continuer" href="circuit/rivages.html">VOIR LE DETAIL</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="element-item hotel bus minibus marrakech agadir essaouira complete culturel" data-category="metalloid">
+                        <div class="colLeft">
+                            <h3 class="name"><a href="circuit/sultan_bleu.html">Circuit le Sultan Bleu</a></h3>
+                            <div class="image-item">
+                                <a href="circuit/sultan_bleu.html">
+                                    <img src="img/sultan/photo_liste.jpg" alt="Circuit Sud Marocain 3* sup / 4*">
+                                </a>
+                            </div>
+                            <div class="description">
+                                <p>Cap sur le sud du royaume avec une impression de bout du monde : le pays du Sultan Bleu. </p>
+                            </div>
+                            <div class="ajouter" style="display: none;">
+                                <ul>
+                                    <li> Hôtel <span></span></li>
+                                    <li class="gris"> Campement</li>
+                                    <li > Gîte </li>
+                                    <li class="gris"> Culturel <span></span></li>
+                                    <li> Aventure </li>
+                                    <li class="gris">Randonnée</li>
+                                    <li> Minibus  climatisés<span></span></li>
+                                    <li class="gris"> 4x4</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <input value="3800" type="checkbox" alt="" class="compare"  id="sej2">
+                        <label for="sej2">Ajouter au comparateur</label>
+                        <div class="colRight">
+                            <div class="prix-block">
+                                <p class="prix"><small>À partir de</small><br/>729€/pers</p>
+                            </div>
+                            <div class="avis-block">
+                                avis : <span class="avis"> 3/5</span><img src="img/etoile3.gif"/>
+                            </div>
+                            <div class="button-continuer">
+                                <a class="continuer" href="circuit/sultan_bleu.html">VOIR LE DETAIL</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="element-item minibus hotel campement gîte marrakech complete randonnée" data-category="post-transition">
+                        <div class="colLeft">
+                            <h3 class="name"><a href="circuit/toubkal.html">Circuit Toubkal</a></h3>
+                            <div class="image-item">
+                                <a href="circuit/toubkal.html">
+                                    <img src="img/toubkal/photo_liste.jpg" alt="Circuit Grand Sud en 4X4 3/4*">
+                                </a>
+                            </div>
+                            <div class="description">
+                                <p>Ce programme très progressif vous amènera au sommet du Toubkal, point culminant de l’Atlas, à 4 167 m. Sur le chemin : villages, cultures, rencontres… l’authenticité du pays berbère.
+                                </p>
+                            </div>
+                            <div class="ajouter" style="display: none;">
+                                <ul>
+                                    <li> Hôtel <span></span></li>
+                                    <li class="gris"> Campement <span></span></li>
+                                    <li > Gîte  <span></span></li>
+                                    <li class="gris"> Culturel</li>
+                                    <li> Aventure </li>
+                                    <li class="gris">Randonnée  <span></span></li>
+                                    <li> Minibus  <span></span></li>
+                                    <li class="gris"> 4x4</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <input value="3800" type="checkbox" alt="" class="compare"  id="sej3">
+                        <label for="sej3">Ajouter au comparateur</label>
+                        <div class="colRight">
+                            <div class="prix-block">
+                                <p class="prix"><small>À partir de</small><br/> 679€/pers</p>
+                            </div>
+                            <div class="avis-block">
+                                avis : <span class="avis"> 2/5</span><img src="img/etoile2.gif"/>
+                            </div>
+                            <div class="button-continuer">
+                                <a class="continuer" href="circuit/toubkal.html">VOIR LE DETAIL</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="element-item 15 bivouac hotel minibus essaouira marrakech fes demi aventure" data-category="post-transition">
+                        <div class="colLeft">
+                            <h3 class="name"><a href="circuit/magie.html">Circuit la magie du desert</a></h3>
+                            <div class="image-item">
+                                <a href="circuit/magie.html">
+                                    <img src="img/magie/photo_liste.jpg" alt="Circuit Grand Sud en 4X4 3/4*">
+                                </a>
+                            </div>
+                            <div class="description">
+                                <p>Une mosaïque de couleurs : du sud du pays, avec ses oasis verdoyantes, ses ksars hautains, ses villages fortifiés et ses somptueuses kasbahs, jusqu’au Moyen-Atlas. </p>
+                            </div>
+                            <div class="ajouter" style="display: none;">
+                                <ul>
+                                    <li> Hôtel <span></span></li>
+                                    <li class="gris"> Campement/bivouac <span></span></li>
+                                    <li > Gîte  </li>
+                                    <li class="gris"> Culturel</li>
+                                    <li> Aventure <span></span></li>
+                                    <li class="gris">Randonnée  </li>
+                                    <li> Minibus  climatisés<span></span></li>
+                                    <li class="gris"> 4x4</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <input value="3800" type="checkbox" alt="" class="compare"  id="sej3">
+                        <label for="sej3">Ajouter au comparateur</label>
+                        <div class="colRight">
+                            <div class="prix-block">
+                                <p class="prix"><small>À partir de</small><br/>939€/pers</p>
+                            </div>
+                            <div class="avis-block">
+                                avis : <span class="avis"> 5/5</span><img src="img/etoile5.gif"/>
+                            </div>
+                            <div class="button-continuer">
+                                <a class="continuer" href="circuit/magie.html">VOIR LE DETAIL</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="element-item 7 hotel bivouac 4x4 essaouira marrakech demi aventure" data-category="post-transition">
+                        <div class="colLeft">
+                            <h3 class="name"><a href="circuit/rose.html">Circuit rose des sables</a></h3>
+                            <div class="image-item">
+                                <a href="circuit/rose.html">
+                                    <img src="img/rose/photo_liste.jpg" alt="Circuit Grand Sud en 4X4 3/4*">
+                                </a>
+                            </div>
+                            <div class="description">
+                                <p>Contraste entre les montagnes du Haut Atlas et les dunes du Grand Sud, entre la verdure des oasis et l’aridité du désert, et entre les habitants sédentaires des montagnes et les nomades du désert.
+                                </p>
+                            </div>
+                            <div class="ajouter" style="display: none;">
+                                <ul>
+                                    <li> Hôtel <span></span></li>
+                                    <li class="gris"> Campement/bivouac <span></span></li>
+                                    <li > Gîte  </li>
+                                    <li class="gris"> Culturel</li>
+                                    <li> Aventure <span></span></li>
+                                    <li class="gris">Randonnée  </li>
+                                    <li> Minibus  </li>
+                                    <li class="gris"> 4x4<span></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <input value="3800" type="checkbox" alt="" class="compare"  id="sej3">
+                        <label for="sej3">Ajouter au comparateur</label>
+                        <div class="colRight">
+                            <div class="prix-block">
+                                <p class="prix"><small>À partir de</small><br/>799€/pers</p>
+                            </div>
+                            <div class="avis-block">
+                                avis : <span class="avis"> 4/5</span><img src="img/etoile4.gif"/>
+                            </div>
+                            <div class="button-continuer">
+                                <a class="continuer" href="circuit/rose.html">VOIR LE DETAIL</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer footer-container">
+            <div class="bloc1">
+                <ul>
+                    <li>Paiement sécurisé</li>
+                    <li>Agence à votre écoute</li>
+                    <li>Séjours personnalisés</li>
+                </ul>
+            </div>
+            <div class="bloc2">
+                <h1 class="title-footer">Voyage au Maroc</h1>
+                <div class="nav-footer">
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="hotel.html">Hôtel</a></li>
+                        <li><a href="circuit.html">Circuit</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

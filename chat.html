@@ -32,7 +32,7 @@
   $(function () {
     var socket = io();
     $('form').submit(function(){
-      socket.emit('chat message', $('#m').val());
+      socket.emit('ui command', $('#m').val());
       $('#m').val('');
       return false;
     });
@@ -42,7 +42,7 @@
     });
     socket.on('ui command', function(cmd){
         $('#messages').append($('<li>').text("Command: "+cmd));
-        eval(cmd);
+        //eval(cmd);
     });
   });
 </script>

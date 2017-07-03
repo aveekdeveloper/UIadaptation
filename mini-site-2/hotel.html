@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html class="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Hôtel</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/style.css">
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <script src="js/isotope/isotope.pkgd.min.js"></script>
+        <script src="js/sejour.js"></script>
+		<script src="js/logs.js"></script>
+    <script src="js/uicommand.js"></script>
+    </head>
+
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div class="header-container">
+            <div  class="header clearfix">
+                <h1 class="title">Voyage au Maroc</h1>
+                <div class="nav">
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="hotel.html" class="is-active">Hôtel</a></li>
+                        <li><a href="circuit.html">Circuit</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="retour"  style="display:none;">
+                <button class="retour button" onclick='javascript:location.reload();'>Retour</button>
+            </div>
+            <div class="compare-block" style="display:none">
+                Prix :
+                Prestation :
+                Disponibilité :
+            </div>
+
+            <div class="contenu">
+                <div id="filtre">
+                    <div id="options">
+                        <h3> Affiner les résultats</h3>
+                        <h4>Villes</h4>
+                        <div class="option-set" data-group="ville">
+                            <input type="checkbox" value="" id="ville-all" class="all" checked /><label for="ville-all">Tout</label><br/>
+                            <input type="checkbox" value=".agadir" id="agadir" /><label for="agadir">Agadir</label><br/>
+                            <input type="checkbox" value=".essaouira" id="essaouira" /><label for="essaouira">Essaouira</label><br/>
+                            <input type="checkbox" value=".marrakech" id="marrakech" /><label for="marrakech">Marrakech</label>
+
+                        </div>
+
+                        <h4>Catégorie</h4>
+                        <div class="option-set" data-group="etoile">
+                            <input type="checkbox" value="" id="etoile-all" class="all" checked /><label for="etoile-all">Tout</label><br/>
+                            <input type="checkbox" value=".etoile3" id="etoile3" /><label for="etoile3">3*</label><br/>
+                            <input type="checkbox" value=".etoile4" id="etoile4" /><label for="etoile4">4*</label><br/>
+                            <input type="checkbox" value=".etoile5" id="etoile5" /><label for="etoile5">5*</label>
+                        </div>
+
+                        <h4>Activités</h4>
+                        <div class="option-set" data-group="activite">
+                            <input type="checkbox" value="" id="activite-all" class="all" checked /><label for="activite-all">Tout</label><br/>
+                            <input type="checkbox" value=".surf" id="surf" /><label for="surf">Surf</label><br/>
+                            <input type="checkbox" value=".desert" id="desert" /><label for="desert">visite désert</label><br/>
+                            <input type="checkbox" value=".golf" id="golf" /><label for="golf">golf</label><br/>
+                            <input type="checkbox" value=".spa" id="spa" /><label for="spa">spa</label><br/>
+                        </div>
+
+                        <h4>Formule</h4>
+                        <div class="option-set" data-group="formule">
+                            <input type="checkbox" value="" id="formule-all" class="all" checked /><label for="formule-all">Tout</label><br/>
+                            <input type="checkbox" value=".demi" id="demi" /><label for="demi">Demi-pension</label><br/>
+                            <input type="checkbox" value=".complete" id="complete" /><label for="complete">Pension complète</label><br/>
+                            <input type="checkbox" value=".tout" id="tout" /><label for="tout">Tout compris</label><br/>
+                            <input type="checkbox" value=".dej" id="dej" /><label for="dej">Petit déjeuner</label>
+                        </div>
+                    </div>
+
+                    <div class="recherche">
+                        <form id="sorts" class="group">
+                            <SELECT name="nom" size="1" >
+                                <OPTION class="sort" data-sort-by="original-order"> Trier par </OPTION>
+                                <OPTION class="sort" data-sort-by="name">Ordre alphabétique</OPTION>
+                                <OPTION class="sort is-checked" data-sort-by="prixcroissant">Prix croissant</OPTION>
+                                <OPTION class="sort " data-sort-by="prixdecroissant">Prix décroissant</OPTION>
+                                <OPTION class="sort" data-sort-by="number">Avis de client</OPTION>
+                            </SELECT>
+                        </form>
+
+                        <div class="compare">
+                            <button class="button-compare button" ><label>Comparateur</label></button>&nbsp;
+							<button class="button-compare button" id="reinitFiltre" title="Annuler le filtre (Affiner les résultats)"><label>Voir tout</label></button>
+							<div class="compare_txt"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="isotope" id="content">
+                    <div class="element-item Page1 decale surf etoile3 essaouira complete desert" data-category="transition">
+                        <div class="colLeft">
+                            <h3 class="name"><a href="hotel/hotel_perle.html">Hôtel Perle de Mogador 3*</a></h3>
+                            <div class="image-item">
+                                <a href="hotel/hotel_perle.html">
+                                    <img src="img/perle_3/photo_liste.jpg" alt="Hôtel La Perle de Mogador 3*">
+                                </a>
+                            </div>
+                            <div class="description">
+                                <div>
+                                    <h2>Ville : Essaouira</h2>
+                                </div>
+                                <ul>
+                                    <li>Un séjour détente ou découverte</li>
+                                    <li>Surf, kite-surf et planche à voile</li>
+                                    <li>De nombreuses excursions possibles</li>
+                                </ul>
+                            </div>
+
+                            <div class="ajouter" style="display: none;">
+                                <ul>
+                                    <li> Animation</li>
+                                    <li class="gris"> Bien être/Spa</li>
+                                    <li > Visite désert <span></span></li>
+                                    <li class="gris"> Visite culturelle <span></span></li>
+                                    <li> Club enfant </li>
+                                    <li class="gris">Activité sportive <span></span></li>
+                                    <li> Piscine <span></span></li>
+                                    <li class="gris"> Parking </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <input value="compare" type="checkbox" alt="" class="compare" id="sej1">
+                        <label for="sej1">Ajouter au comparateur</label>
+                        <div class="colRight">
+                            <div class="prix-block">
+                                <p class="prix"><small>À partir de</small><br/>375€/pers</p>
+                            </div>
+                            <div class="avis-block">
+                                Avis : <span class="avis"> 5/5</span><img src="img/etoile5.gif"/>
+                            </div>
+                            <div class="button-continuer">
+                                <a class="continuer" href="hotel/hotel_perle.html">VOIR LE DETAIL</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="element-item Page1 decale etoile4 marrakech complete " data-category="transition">
+                        <div class="colLeft">
+                            <h3 class="name"><a href="hotel/novotel.html">Hôtel suite NOVOTEL 4*</a></h3>
+                            <div class="image-item">
+                                <a href="hotel/novotel.html">
+                                    <img src="img/novotel_4/photo_liste.jpg" alt="HÔTEL SUITE NOVOTEL">
+                                </a>
+                            </div>
+                            <div class="description">
+                                <div>
+                                    <h2>Ville : Marrakech</h2>
+                                </div>
+                                <ul>
+                                    <li>Proche du Centre ville
+                                    </li>
+                                    <li>A 1.5 km de la Place JAMAA EL FNA</li>
+                                    <li>
+                                        Au coeur de la cité des Mille et Une Nuits.</li>
+                                </ul>
+                            </div>
+
+                            <div class="ajouter" style="display: none;">
+                                <ul>
+                                    <li> Animation</li>
+                                    <li class="gris"> Bien être/Spa <span></span></li>
+                                    <li > Visite désert </li>
+                                    <li class="gris"> Visite culturelle </li>
+                                    <li> Club enfant <span></span></li>
+                                    <li class="gris">Activité sportive </li>
+                                    <li> Piscine <span></span></li>
+                                    <li class="gris"> Parking <span></span></li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                        <input value="compare" type="checkbox" alt="" class="compare" id="sej2">
+                        <label for="sej2">Ajouter au comparateur</label>
+                        <div class="colRight">
+                            <div class="prix-block">
+                                <p class="prix"><small>À partir de</small><br/>375€/pers</p>
+                            </div>
+                            <div class="avis-block">
+                                Avis : <span class="avis"> 4/5</span><img src="img/etoile4.gif"/>
+                            </div>
+                            <div class="button-continuer">
+                                <a class="continuer" href="hotel/novotel.html">VOIR LE DETAIL</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="element-item Page1 etoile5 marrakech demi spa resto " data-category="metalloid">
+                        <div class="colLeft">
+                            <h3 class="name"><a href="hotel/atlas_madina.html">Hôtel Atlas Médina 5*</a></h3>
+                            <div class="image-item">
+                                <a href="hotel/atlas_madina.html">
+                                    <img src="img/atlas_madina_5/photo_liste.jpg" alt="Hôtel Atlas Médina 5*">
+                                </a>
+                            </div>
+                            <div class="description">
+                                <div>
+                                    <h2>Ville : Marrakech</h2>
+                                </div>
+                                <ul>
+                                    <li>Proche de la médina, de l'animation
+                                    </li>
+                                    <li>Détente, culture et découverte</li>
+                                    <li>
+                                        La vie nocturne marrakchie</li>
+                                </ul>
+                            </div>
+
+                            <div class="ajouter" style="display: none;">
+                                <ul>
+                                    <li> Animation</li>
+                                    <li class="gris"> Bien être/Spa <span></span></li>
+                                    <li > Visite désert </li>
+                                    <li class="gris"> Visite culturelle </li>
+                                    <li> Club enfant <span></span></li>
+                                    <li class="gris">Activité sportive </li>
+                                    <li> Piscine <span></span></li>
+                                    <li class="gris"> Parking <span></span></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <input value="3800" type="checkbox" alt="" class="compare"  id="sej3">
+                        <label for="sej3">Ajouter au comparateur</label>
+                        <div class="colRight">
+                            <div class="prix-block">
+                                <p class="prix"><small>À partir de</small><br/>625€/pers</p>
+                            </div>
+                            <div class="avis-block">
+                                Avis : <span class="avis"> 4/5</span><img src="img/etoile4.gif"/>
+                            </div>
+                            <div class="button-continuer">
+                                <a class="continuer" href="hotel/atlas_madina.html">VOIR LE DETAIL</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="element-item Page1 etoile5 marrakech demi desert " data-category="metalloid">
+                        <div class="colLeft">
+                            <h3 class="name"><a href="hotel/kenzi_farah.html">Hôtel Kenzi Farah 5*</a></h3>
+                            <div class="image-item">
+                                <a href="hotel/kenzi_farah.html">
+                                    <img src="img/kenzi_farah_5/photo_liste.jpg" alt="Hôtel Kenzi Farah 5*">
+                                </a>
+                            </div>
+
+                            <div class="description">
+                                <div>
+                                    <h2>Ville : Marrakech</h2>
+                                </div>
+                                <ul>
+                                    <li>Alliez effervescence et calme</li>
+                                    <li>Hôtel tout confort</li>
+                                    <li>Proche de la place Jemaa el Fna</li>
+                                </ul>
+                            </div>
+
+                            <div class="ajouter" style="display: none;">
+                                <ul>
+                                    <li> Animation<span></span></li>
+                                    <li class="gris"> Bien être/Spa <span></span></li>
+                                    <li > Visite désert </li>
+                                    <li class="gris"> Visite culturelle <span></span> </li>
+                                    <li> Club enfant</li>
+                                    <li class="gris">Activité sportive <span></span></li>
+                                    <li> Piscine <span></span></li>
+                                    <li class="gris"> Parking</li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <input value="3800" type="checkbox" alt="" class="compare"  id="sej4">
+                        <label for="sej4">Ajouter au comparateur</label>
+                        <div class="colRight">
+                            <div class="prix-block">
+                                <p class="prix"><small>À partir de</small><br/>678€/pers</p>
+                            </div>
+                            <div class="avis-block">
+                                Avis : <span class="avis"> 3/5</span><img src="img/etoile4.gif"/>
+                            </div>
+                            <div class="button-continuer">
+                                <a class="continuer" href="hotel/kenzi_farah.html">VOIR LE DETAIL</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="element-item Page1 decale etoile3 fes dej desert" data-category="post-transition">
+                        <div class="colLeft">
+                            <h3 class="name"><a href="hotel.html">Hôtel Fashion 3*</a></h3>
+                            <div class="image-item">
+                                <a href="hotel/fashion.html">
+                                    <img src="img/fashion_3/photo_liste.jpg" alt="Hôtel Fashion 3*">
+                                </a>
+                            </div>
+                            <div class="description">
+                                <div>
+                                    <h2>Ville : Marrakech</h2>
+                                </div>
+                                <ul>
+                                    <li>En plein centre ville</li>
+                                    <li>Près du minaret de la Koutoubia</li>
+                                    <li>Proche de la célèbre place Djemâa El Fna</li>
+                                </ul>
+                            </div>
+                            <div class="ajouter" style="display: none;">
+                                <ul>
+                                    <li> Animation</li>
+                                    <li class="gris"> Bien être/Spa <span></span></li>
+                                    <li > Visite désert </li>
+                                    <li class="gris"> Visite culturelle </li>
+                                    <li> Club enfant </li>
+                                    <li class="gris">Activité sportive</li>
+                                    <li> Piscine <span></span></li>
+                                    <li class="gris"> Parking </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <input value="3800" type="checkbox" alt="" class="compare"  id="sej5">
+                        <label for="sej5">Ajouter au comparateur</label>
+                        <div class="colRight">
+                            <div class="prix-block">
+                                <p class="prix"><small>À partir de</small><br/>354€/pers</p>
+                            </div>
+                            <div class="avis-block">
+                                Avis : <span class="avis"> 2/5</span><img src="img/etoile2.gif"/>
+                            </div>
+                            <div class="button-continuer">
+                                <a class="continuer" href="hotel/fashion.html">VOIR LE DETAIL</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="element-item Page2 decale spa etoile4 agadir complete" data-category="post-transition">
+                        <div class="colLeft">
+                            <h3 class="name"><a href="hotel/argana.html">Hôtel Argana 4*</a></h3>
+                            <div class="image-item">
+                                <a href="hotel/argana.html">
+                                    <img src="img/argana_4/photo_liste.jpg" alt="Hôtel Argana 4*">
+                                </a>
+                            </div>
+                            <div class="description">
+                                <div>
+                                    <h2>Ville : Agadir</h2>
+                                </div>
+                                <ul>
+                                    <li>Un massage de 20 minutes offert</li>
+                                    <li>Une vue sur la baie d’Agadir</li>
+                                    <li>Architecture moderne de style marocain</li>
+                                </ul>
+                            </div>
+                            <div class="ajouter" style="display: none;">
+                                <ul>
+                                    <li> Animation <span></span></li>
+                                    <li class="gris"> Bien être/Spa <span></span></li>
+                                    <li > Visite désert </li>
+                                    <li class="gris"> Visite culturelle </li>
+                                    <li> Club enfant <span></span></li>
+                                    <li class="gris">Activité sportive<span></span></li>
+                                    <li> Piscine <span></span></li>
+                                    <li class="gris"> Parking <span></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <input value="3800" type="checkbox" alt="" class="compare"  id="sej6">
+                        <label for="sej6">Ajouter au comparateur</label>
+                        <div class="colRight">
+                            <div class="prix-block">
+                                <p class="prix"><small>À partir de</small><br/>599€/pers</p>
+                            </div>
+                            <div class="avis-block">
+                                Avis : <span class="avis"> 3/5</span><img src="img/etoile3.gif"/>
+                            </div>
+                            <div class="button-continuer">
+                                <a class="continuer" href="hotel/argana.html">VOIR LE DETAIL</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="element-item spa  essaouira etoile3 dej " data-category="transition">
+                        <div class="colLeft">
+                            <h3 class="name"><a href="hotel/al_madina.html">Hôtel Al Madina 3*</a></h3>
+                            <div class="image-item">
+                                <a href="hotel/al_madina.html">
+                                    <img src="img/al_madina_3/photo_liste.jpg" alt="Hôtel Al Madina 3*">
+                                </a>
+                            </div>
+                            <div class="description">
+                                <div>
+                                    <h2>Ville : essaouira</h2>
+                                </div>
+                                <ul>
+                                    <li>A proximité des souks</li>
+                                    <li>Au cœur de la médina</li>
+                                    <li>A 200 mètres de la plage</li>
+                                </ul>
+                            </div>
+                            <div class="ajouter" style="display: none;">
+                                <ul>
+                                    <li> Animation </li>
+                                    <li class="gris"> Bien être/Spa </li>
+                                    <li > Visite désert </li>
+                                    <li class="gris"> Visite culturelle </li>
+                                    <li> Club enfant </li>
+                                    <li class="gris">Activité sportive</li>
+                                    <li> Piscine </li>
+                                    <li class="gris"> Parking <span></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <input value="3800" type="checkbox" alt="" class="compare" id="sej7">
+                        <label for="sej7">Ajouter au comparateur</label>
+                        <div class="colRight">
+                            <div class="prix-block">
+                                <p class="prix"><small>À partir de</small><br/>409€/pers</p>
+                            </div>
+                            <div class="avis-block">
+                                Avis : <span class="avis"> 3/5</span><img src="img/etoile3.gif"/>
+                            </div>
+                            <div class="button-continuer">
+                                <a class="continuer" href="hotel/al_madina.html">VOIR LE DETAIL</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="element-item decale golf etoile5 agadir dej  " data-category="metalloid">
+                        <div class="colLeft">
+                            <h3 class="name"><a href="hotel/royal_atlas.html">Hôtel Royal Atlas 5*</a></h3>
+                            <div class="image-item">
+                                <a href="hotel/royal_atlas.html">
+                                    <img src="img/royal_atlas_5/photo_liste.jpg" alt="Hôtel Royal Atlas 5*">
+                                </a>
+                            </div>
+                            <div class="description">
+                                <div>
+                                    <h2>Ville : agadir</h2>
+                                </div>
+                                <ul>
+                                    <li>Les pieds dans l'eau</li>
+                                    <li>A 10 minutes à pied du centre ville</li>
+                                    <li>Propose de nombreuses activités</li>
+                                </ul>
+                            </div>
+
+                            <div class="ajouter" style="display: none;">
+                                <ul>
+                                    <li> Animation <span></span></li>
+                                    <li class="gris"> Bien être/Spa <span></span></li>
+                                    <li > Visite désert </li>
+                                    <li class="gris"> Visite culturelle </li>
+                                    <li> Club enfant <span></span></li>
+                                    <li class="gris">Activité sportive<span></span></li>
+                                    <li> Piscine <span></span></li>
+                                    <li class="gris"> Parking <span></span></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <input value="3800" type="checkbox" alt="" class="compare"  id="sej8">
+                        <label for="sej8">Ajouter au comparateur</label>
+                        <div class="colRight">
+                            <div class="prix-block">
+                                <p class="prix"><small>À partir de</small><br/>589€/pers</p>
+                            </div>
+                            <div class="avis-block">
+                                Avis : <span class="avis"> 3/5</span><img src="img/etoile3.gif"/>
+                            </div>
+                            <div class="button-continuer">
+                                <a class="continuer" href="hotel/royal_atlas.html">VOIR LE DETAIL</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="element-item decale spa golf etoile5 marrakech complete " data-category="metalloid">
+                        <div class="colLeft">
+                            <h3 class="name"><a href="hotel/vatel.html">Hôtel Vatel 5*</a></h3>
+                            <div class="image-item">
+                                <a href="hotel/vatel.html">
+                                    <img src="img/vatel_5/photo_liste.jpg" alt="Hôtel vatel 5*">
+                                </a>
+                            </div>
+                            <div class="description">
+                                <div>
+                                    <h2>Ville : Marrakech</h2>
+                                </div>
+                                <ul>
+                                    <li>centre de bien-être</li>
+                                    <li>à proximité de Parc aquatique Oasiria</li>
+                                    <li>Terrain de Golf</li>
+                                </ul>
+                            </div>
+
+                            <div class="ajouter" style="display: none;">
+                                <ul>
+                                    <li> Animation</li>
+                                    <li class="gris"> Bien être/Spa <span></span></li>
+                                    <li > Visite désert </li>
+                                    <li class="gris"> Visite culturelle </li>
+                                    <li> Club enfant </li>
+                                    <li class="gris">Activité sportive<span></span></li>
+                                    <li> Piscine <span></span></li>
+                                    <li class="gris"> Parking <span></span></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <input value="3800" type="checkbox" alt="" class="compare"  id="sej9">
+                        <label for="sej9">Ajouter au comparateur</label>
+                        <div class="colRight">
+                            <div class="prix-block">
+                                <p class="prix"><small>À partir de</small><br/>609€/pers</p>
+                            </div>
+                            <div class="avis-block">
+                                Avis : <span class="avis"> 3/5</span><img src="img/etoile3.gif"/>
+                            </div>
+                            <div class="button-continuer">
+                                <a class="continuer" href="hotel/vatel.html">VOIR LE DETAIL</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="element-item Page2 spa marrakech etoile4 demi " data-category="transition">
+                        <div class="colLeft">
+                            <h3 class="name"><a href="hotel/golden_tulip.html">Hôtel Golden Tulip 4*</a></h3>
+                            <div class="image-item">
+                                <a href="hotel/golden_tulip.html">
+                                    <img src="img/golden_tulip_4/photo_liste.jpg" alt="Hôtel Golden Tulip 4*">
+                                </a>
+                            </div>
+                            <div class="description">
+                                <div>
+                                    <h2>Ville : marrakech</h2>
+                                </div>
+                                <ul>
+                                    <li>Vol sur la Royal Air Maroc</li>
+                                    <li>Dans le quartier de l'Hivernage</li>
+                                    <li>Proche de la place Djemaa El Fna</li>
+                                </ul>
+                            </div>
+                            <div class="ajouter" style="display: none;">
+                                <ul>
+                                    <li> Animation</li>
+                                    <li class="gris"> Bien être/Spa <span></span></li>
+                                    <li > Visite désert </li>
+                                    <li class="gris"> Visite culturelle </li>
+                                    <li> Club enfant </li>
+                                    <li class="gris">Activité sportive<span></span></li>
+                                    <li> Piscine <span></span></li>
+                                    <li class="gris"> Parking</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <input value="3800" type="checkbox" alt="" class="compare" id="sej10">
+                        <label for="sej10">Ajouter au comparateur</label>
+                        <div class="colRight">
+                            <div class="prix-block">
+                                <p class="prix"><small>À partir de</small><br/>614€/pers</p>
+                            </div>
+                            <div class="avis-block">
+                                Avis : <span class="avis"> 4/5</span><img src="img/etoile3.gif"/>
+                            </div>
+                            <div class="button-continuer">
+                                <a class="continuer" href="hotel/golden_tulip.html">VOIR LE DETAIL</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer footer-container">
+            <div class="bloc1">
+                <ul>
+                    <li>Paiement sécurisé</li>
+                    <li>Agence à votre écoute</li>
+                    <li>Séjours personnalisés</li>
+                </ul>
+            </div>
+            <div class="bloc2">
+                <h1 class="title-footer">Voyage au Maroc</h1>
+                <div class="nav-footer">
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="hotel.html">Hôtel</a></li>
+                        <li><a href="circuit.html">Circuit</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
