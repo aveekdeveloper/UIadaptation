@@ -1,0 +1,17 @@
+body {
+  background-color: #ddd;
+  padding: 0.5em;
+  text-align: center;
+  font-family: "Helvetica Neueu", "Helvetica", "Arial", sans;
+}
+
+
+
+#camera {
+  display: hidden;
+  visibility: hidden;
+  background-color: #eee;
+  width: 250px;
+  height: 300px;
+  margin: 0.5em;
+}
