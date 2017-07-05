@@ -1,13 +1,23 @@
 //var app = require('express')();
 const express = require('express');
+var bodyParser =  require("body-parser");
 const app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var emotion = require('./jslib/emotioncollection.js');
 
 app.use(express.static('mini-site-2'))
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-app.get('/chat', function(req, res){
-  res.sendFile(__dirname + '/chat.html');
+//Routes
+app.get('/uicommand', function(req, res){
+  res.sendFile(__dirname + '/uicommand.html');
+});
+
+app.post('/emotions', function(req, res){
+  emotion.addEmotion2DB(req.body);
+  res.send("ok");
 });
 
 io.on('connection', function(socket){

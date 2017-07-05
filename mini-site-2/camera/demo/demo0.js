@@ -1,3 +1,5 @@
+var emotionurl = '/emotions'
+
 $(function() {
   if (window.JpegCamera) {
     var camera; // Initialized at the end
@@ -15,7 +17,7 @@ $(function() {
     }
 
     var take_snapshots = function() {
-      var snapshot = camera.capture(options={shutter: false});
+      var snapshot = camera.capture(/*options={shutter: false}*/);
       console.log(snapshot);
       var myReader = new FileReader();
       snapshot.get_blob(function(data){
@@ -57,8 +59,35 @@ function CallMicrosoftAPI(apiUrl, apiKey, imgblob)
         });
 }
 
+
 //TODO: send to the UI server all the analysed image emotions
 function ProcessResult(response)
 {
-  console.log(response);
+  //decorate the response
+  //response.state = AppState;
+  //response.session = GetPresentSession();
+
+  $.ajax({
+    url: emotionurl,
+    type: "POST",
+    data: response[0]["scores"],
+  })
+  console.log(response[0]["scores"]);
 }
+/*
+var AppStateEnum = {
+  LIVE: 1,
+  TEST: 2,
+  properties: {
+    1: {name: "live", value: 1, code: "L"},
+    2: {name: "test", value: 2, code: "T"}
+  }
+};
+
+var AppState = AppStateEnum.TEST;
+
+//TODO: implement it
+function GetPresentSession(){
+  return 1;
+}
+*/
