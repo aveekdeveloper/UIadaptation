@@ -66,13 +66,21 @@ function ProcessResult(response)
   //decorate the response
   //response.state = AppState;
   //response.session = GetPresentSession();
+  var data = {
+    timestamp : (new Date()).toISOString().substring(0, 19).replace('T', ' '),
+    emotions : response[0]["scores"],
+    var_i : 1,
+    var_f : 2,
+    user_id : 'Aveek'
+  };
+
 
   $.ajax({
     url: emotionurl,
     type: "POST",
-    data: response[0]["scores"],
+    data: data,
   })
-  console.log(response[0]["scores"]);
+  console.log(JSON.stringify(data));
 }
 /*
 var AppStateEnum = {

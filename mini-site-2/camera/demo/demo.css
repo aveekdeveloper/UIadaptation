@@ -9,7 +9,7 @@ body {
 
 #camera {
   display: hidden;
-  visibility: hidden;
+  /*visibility: hidden;*/
   background-color: #eee;
   width: 250px;
   height: 300px;
