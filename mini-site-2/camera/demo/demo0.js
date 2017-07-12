@@ -71,7 +71,7 @@ function ProcessResult(response)
     emotions : response[0]["scores"],
     var_i : 1,
     var_f : 2,
-    user_id : 'Aveek'
+    user_id : $('#username').val()
   };
 
 
